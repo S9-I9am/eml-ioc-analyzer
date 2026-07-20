@@ -1,0 +1,27 @@
+From: attacker@example.com
+To: victim@example.com
+Subject: Test avec =?utf-8?q?pi=C3=A8ce?= jointe
+Date: Mon, 20 Jul 2026 10:30:00 +0100
+MIME-Version: 1.0
+Content-Type: multipart/mixed; boundary="===============4567308492189134507=="
+
+--===============4567308492189134507==
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+
+
+Bonjour,
+
+Voici le document demandé.
+
+Cordialement
+
+--===============4567308492189134507==
+Content-Type: application/octet-stream
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="malware.exe"
+MIME-Version: 1.0
+
+VGhpcyBpcyBhIGZha2UgbWFsd2FyZSBmaWxl
+
+--===============4567308492189134507==--
