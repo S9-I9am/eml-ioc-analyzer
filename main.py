@@ -8,6 +8,10 @@ resultat = parser.parse()
 extractor = IOCExtractor(resultat)
 
 urls = extractor.extract_urls()
+ips = extractor.extract_ips()
+fichiers_suspects = extractor.extract_suspicious_files()
 
 print(resultat)
-print(urls)
+print("URLs détectées :", urls)
+print("IPs détectées :", ips)
+print("Fichiers suspects :", fichiers_suspects)

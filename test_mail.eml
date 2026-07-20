@@ -3,6 +3,10 @@ To: victim@example.com
 Subject: Security Alert
 
 Votre compte a été compromis.
+Votre serveur de connexion : 
+185.23.45.10
+Adresse de secours :
+192.168.1.20
 
 Cliquez ici :
 https://fake-login-security.com/account
