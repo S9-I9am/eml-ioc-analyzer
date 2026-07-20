@@ -17,5 +17,15 @@ class EMLParser:
             "subject": message.get("Subject"),
             "from": message.get("From"),
             "to": message.get("To"),
-            "date": message.get("Date")
+            "date": message.get("Date"),
+            "body": self.extract_body(message)
+            
         }
+    def extract_body(self, message):
+        if message.is_multipart():
+            for part in message.walk():
+                content_type = part.get_content_type()
+        else:
+            return message.get_content()
+        return None        
+                    
