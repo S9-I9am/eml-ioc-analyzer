@@ -18,10 +18,8 @@ def verif_mail(file_path):
       print(f"Date                 : {msg['date']} ")
       print("=" * 60)
       
-      # === EXTRACTION DU CORPS DU MESSAGE ===
       corps = ""
     
-    # 1. Si le message a plusieurs parties (texte, HTML, pièces jointes...)
       if msg.is_multipart():
          for partie in msg.walk():
             # On cherche spécifiquement le morceau qui contient le texte brut
@@ -29,11 +27,9 @@ def verif_mail(file_path):
                 corps = partie.get_content()
                 break # On a trouvé le texte, on arrête de chercher
                 
-    # 2. Si le message est un simple texte d'un seul bloc
       else:
         corps = msg.get_content()
 
-    # === AFFICHAGE ===
       if corps:
         print("--- CORPS DU MESSAGE ---")
         print(corps.strip())
