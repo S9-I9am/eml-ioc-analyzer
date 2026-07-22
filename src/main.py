@@ -19,13 +19,11 @@ def verif_mail(file_path):
       print("=" * 60)
       
       corps = ""
-    
       if msg.is_multipart():
          for partie in msg.walk():
-            # On cherche spécifiquement le morceau qui contient le texte brut
             if partie.get_content_type() == 'text/plain':
                 corps = partie.get_content()
-                break # On a trouvé le texte, on arrête de chercher
+                break 
                 
       else:
         corps = msg.get_content()
