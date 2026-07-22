@@ -8,8 +8,8 @@ class TestDomainExtractor(unittest.TestCase):
     def test_extract_domains(self):
         email_data = {
             "body": """
-            Visitez https://securelogin.com
-            Le serveur utilisé est malwaretest.net
+             Visitez https://secure-login.com/account
+            Le serveur utilisé est malware-test.net
             """
         }
 
@@ -17,8 +17,8 @@ class TestDomainExtractor(unittest.TestCase):
 
         result = extractor.extract_domains()
 
-        self.assertIn("securelogin.com", result)
-        self.assertIn("malwaretest.net", result)
+        self.assertIn("secure-login.com", result)
+        self.assertIn("malware-test.net", result)
 
 
 if __name__ == "__main__":
