@@ -55,10 +55,3 @@ if __name__ == "__main__":
       dossier_samples = "sample"
       verif_dossier_mail(dossier_samples)
 
-
-
-
-
-
-
-
