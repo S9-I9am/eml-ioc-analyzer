@@ -1,41 +1,49 @@
-import re
+from src.extractors.url_extractor import URLExtractor
+from src.extractors.ip_extractor import IPExtractor
+from src.extractors.domain_extractor import DomainExtractor
+from src.extractors.email_extractor import EmailExtractor
+from src.extractors.hash_extractor import HashExtractor
+
 
 class IOCExtractor:
+
     def __init__(self, email_data):
-       self.email_data = email_data
-    def extract_urls(self):
-        urls = []
-        body = self.email_data.get("body")
-        if body:
-            pattern = r"https://[^\s]+"
-            urls = re.findall(pattern, body)
-        return urls 
-    def extract_ips(self):
-        ips = []
-        body = self.email_data.get("body")
-        if body:
-            pattern = r"\b(?:\d{1,3}\.){3}\d{1,3}\b"
-            ips = re.findall(pattern, body)
-        return ips
-    def extract_suspicious_files(self):
+        self.email_data = email_data
 
-        suspicious = []
 
-        dangerous_extensions = [
-            ".exe",
-            ".dll",
-            ".scr",
-            ".bat",
-            ".cmd",
-            ".vbs",
-            ".js"
-        ]
+    def extract_all(self):
+        """
+        Lance tous les extracteurs IOC
+        et retourne les résultats.
+        """
 
-        attachments = self.email_data.get("attachments", [])
+        results = {
 
-        for file in attachments:
+            "urls": URLExtractor(
+                self.email_data
+            ).extract_urls(),
 
-            if file["extension"].lower() in dangerous_extensions:
-                suspicious.append(file["filename"])
 
-        return suspicious
+            "ips": IPExtractor(
+                self.email_data
+            ).extract_ips(),
+
+
+            "domains": DomainExtractor(
+                self.email_data
+            ).extract_domains(),
+
+
+            "emails": EmailExtractor(
+                self.email_data
+            ).extract_emails(),
+
+
+            "hashes": HashExtractor(
+                self.email_data.get("attachments", [])
+            ).extract_hashes()
+
+        }
+
+
+        return results

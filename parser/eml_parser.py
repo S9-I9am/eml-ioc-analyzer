@@ -27,10 +27,13 @@ class EMLParser:
     def extract_body(self, message):
         if message.is_multipart():
             for part in message.walk():
-                content_type = part.get_content_type()
+                if part.get_content_type() == "text/plain":
+                    return part.get_content()
         else:
             return message.get_content()
-        return None  
+        return ""
+    
+     
     def extract_attachments(self, message):
         """
         Extraction des informations sur les pièces jointes

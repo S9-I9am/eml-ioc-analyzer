@@ -1,26 +1,31 @@
 
-import unittest
+import re
+class DomainExtractor:
 
-from src.extractors.domain_extractor import DomainExtractor
-
-
-class TestDomainExtractor(unittest.TestCase):
-
-    def test_extract_domains(self):
-        email_data = {
-            "body": """
-            Visitez https://secure-login.com/account
-            Le serveur utilisé est malware-test.net
-            """
-        }
-
-        extractor = DomainExtractor(email_data)
-
-        result = extractor.extract_domains()
-
-        self.assertIn("secure-login.com", result)
-        self.assertIn("malware-test.net", result)
+    def __init__(self, email_data):
+        self.email_data = email_data
 
 
-if __name__ == "__main__":
-    unittest.main()
+    def extract_domains(self):
+        """
+        Extrait les noms de domaine présents dans le mail.
+        """
+
+        domains = []
+
+        body = self.email_data.get("body", "")
+
+        if body:
+
+            # Capture les domaines classiques :
+            # exemple.com
+            # secure-login.com
+            # malware-test.net
+            pattern = r"\b(?:[a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}\b"
+
+            domains.extend(
+                re.findall(pattern, body)
+            )
+
+
+        return list(set(domains))
