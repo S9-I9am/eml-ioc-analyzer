@@ -5,7 +5,7 @@ import os
 
 
 class EMLParser:
-
+    print("DEBUG : JE SUIS DANS LE BON PARSER")
     def __init__(self, file_path):
         self.file_path = file_path
 
@@ -38,7 +38,7 @@ class EMLParser:
         """
         Extraction des informations sur les pièces jointes
         """
-
+        
         attachments = []
 
         if message.is_multipart():
@@ -58,9 +58,11 @@ class EMLParser:
                             "content_type": part.get_content_type(),
                             "size": len(payload),
                             "extension": os.path.splitext(filename)[1],
+                            "content":payload,
                             "sha256": hashlib.sha256(payload).hexdigest()
                         }
-
+                        attachments.append(attachment)
+                        
                         attachments.append(attachment)
 
         return attachments

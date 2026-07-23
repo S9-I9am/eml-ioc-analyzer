@@ -8,9 +8,9 @@ class EmailExtractor:
         if not body:
             return []
         
-        email_pattenr = r'[a-zA-Z0-9._%+]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}'
+        email_pattern = r'[a-zA-Z0-9._%+]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}'
         
-        email = re.findall(email_pattern,body)
+        emails = re.findall(email_pattern, body)
         
         return list(set(emails))
 

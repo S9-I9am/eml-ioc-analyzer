@@ -6,6 +6,7 @@ class HashExtractor:
         self.attachments = attachments
         
     def extract_hashes(self):
+        
         hashes = []
         for attachment in self.attachments:
             content = attachment.get("content")

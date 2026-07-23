@@ -1,7 +1,7 @@
 import os
 
 # On importe directement le parser existant
-from parser.eml_parser import EMLParser
+from src.parser.eml_parser import EMLParser
 from ioc.extractor import IOCExtractor
 
 

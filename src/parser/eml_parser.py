@@ -38,7 +38,7 @@ class EMLParser:
         """
         Extraction des informations sur les pièces jointes
         """
-
+        
         attachments = []
 
         if message.is_multipart():
@@ -52,15 +52,16 @@ class EMLParser:
                     if filename:
 
                         payload = part.get_payload(decode=True)
-
+                        if payload is None: continue
+                        
                         attachment = {
                             "filename": filename,
                             "content_type": part.get_content_type(),
                             "size": len(payload),
                             "extension": os.path.splitext(filename)[1],
+                            "content": payload,
                             "sha256": hashlib.sha256(payload).hexdigest()
                         }
-
                         attachments.append(attachment)
 
         return attachments
