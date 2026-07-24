@@ -1,0 +1,13 @@
+{
+    "mail": "test_pishing.eml",
+    "verdict": "SUSPECT",
+    "iocs": {
+        "emails": [
+            "pirate@phishing.com"
+        ],
+        "urls": [
+            "http://site-piege.com"
+        ],
+        "hashes": []
+    }
+}

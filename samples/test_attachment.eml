@@ -21,7 +21,6 @@ Content-Type: application/octet-stream
 Content-Transfer-Encoding: base64
 Content-Disposition: attachment; filename="malware.exe"
 MIME-Version: 1.0
-
 VGhpcyBpcyBhIGZha2UgbWFsd2FyZSBmaWxl
 
 --===============4567308492189134507==--
